@@ -1,0 +1,1000 @@
+   74  ls
+   75  pwd
+   76  rm -r *.o
+   77  du -sh
+   78  cd ../
+   79  ls
+   80  vim BuildFile.xml
+   81  cd src/
+   82  ls
+   83  vim Process_1Lep2fatjet.cc
+   84  sa
+   85  exit
+   86  g
+   87  ls
+   88  cd CMSSW_10_2_18/src/
+   89  ls
+   90  cmsenv
+   91  ls
+   92  cd ../
+   93  exit
+   94  cmssw-cc6
+   95  exit
+   96  g
+   97  cmssw-cc6
+   98  exit
+   99  cmsssw-cc6
+  100  cmssw-cc6
+  101  cmssw-cc65
+  102  cmssw-cc5
+  103  cmssw-cc7
+  104  g
+  105  cmssw-cc6
+  106  exit
+  107  cmssw-cc6
+  108  exit
+  109  g
+  110  ls
+  111  cd NanoAOD/
+  112  ls
+  113  cd  updateJER/
+  114  ls
+  115  cd CMSSW_9_2_0/src/dem/DemoAnalyzer/
+  116  ls
+  117  cd bin/
+  118  ls
+  119  pwd
+  120  c
+  121  ls
+  122  cd NanoTools/
+  123  sl
+  124  scram b -v -j 16
+  125  cmsenv
+  126  ls
+  127  cd ../
+  128  ls
+  129  scram b -v -j 16
+  130  sa
+  131  scram b -v -j 16
+  132  scram b clean
+  133  ls
+  134  scram b -v -j 16
+  135  sa
+  136  scram b -v -j 16
+  137  ls src/dem/DemoAnalyzer/bin/rooutil/rooutil.cc.
+  138  ls src/dem/DemoAnalyzer/bin/rooutil/rooutil.cc
+  139  ls
+  140  ls src/dem/DemoAnalyzer/bin/rooutil/
+  141  pwd
+  142  vim BuildFile.xml
+  143  vi BuildFile.xml
+  144  c
+  145  scram b -v -j 16
+  146  l
+  147  ls
+  148  ls rooutil/
+  149  ls
+  150  ls rooutil/
+  151  exit
+  152  g
+  153  ls
+  154  cd NanoAOD/
+  155  ls
+  156  cd updateJER/
+  157  ls
+  158  cd CMSSW_9_2_0/
+  159  cd src/
+  160  c
+  161  cd dem/DemoAnalyzer/
+  162  cd bin
+  163  ls
+  164  scram b -v -j 16
+  165  scram b clean
+  166  cmsenv
+  167  scram b -v -j 16
+  168  exit
+  169  pwd
+  170  g
+  171  ls
+  172  cd NanoAOD/
+  173  ls
+  174  cd updateJER/
+  175  ls
+  176  cd CMSSW_9_2_0/
+  177  ls
+  178  cd src/dem/DemoAnalyzer/
+  179  cd bin/
+  180  cmsenv
+  181  scram b clean
+  182  ls
+  183  scram b -j 16 -v
+  184  scram b -v -j 16
+  185  cmsenv
+  186  exit
+  187  cmssw-cc6
+  188  exit
+  189  g
+  190  c
+  191  scram b -v -j 16
+  192  pwd
+  193  ls
+  194  sa
+  195  du -sh
+  196  l
+  197  rm www4.root www2.root www.root
+  198  vim run.sh 
+  199  sa
+  200  scram b -v -j 16
+  201  exit
+  202  cmssw-cc6
+  203  exit
+  204  cd goto/
+  205  ls
+  206  cd dir/
+  207  ls
+  208  vim all 
+  209  s
+  210  ls
+  211  cd NanoTools/
+  212  ls
+  213  cd NanoCORE/
+  214  ls
+  215  vim Nano.cc
+  216  cd ../../
+  217  ls
+  218  source source_all.sh 
+  219  pwd
+  220  s
+  221  pwd
+  222  scp -r /eos/user/q/qiguo/NanoAOD/updateJER/CMSSW_9_2_0/src/dem/DemoAnalyzer/bin qilongguo@login-el7.uscms.org:/home/qilongguo/nanoAOD
+  223  scp -r /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/doVVVAnalysis qilongguo@login-el7.uscms.org:/home/qilongguo/nanoAOD/bin
+  224  scp -r /eos/user/q/qiguo/NanoAOD/updateJER/JRDatabase/textFiles/Summer16_25nsV1_MC/Summer16_25nsV1_MC_PtResolution_AK4PFchs.txt qilongguo@login-el7.uscms.org:/home/qilongguo/nanoAOD/bin
+  225  scp -r /eos/user/q/qiguo/NanoAOD/updateJER/JRDatabase qilongguo@login-el7.uscms.org:/home/qilongguo/nanoAOD/bin
+  226  ls
+  227  scp -r /eos/user/q/qiguo/NanoAOD/updateJER/JRDatabase/textFiles/Summer16_25nsV1_MC/ qilongguo@login-el7.uscms.org:/home/qilongguo/nanoAOD/bin
+  228  scp -r /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/doVVVAnalysis qilongguo@login-el7.uscms.org:/home/qilongguo/nanoAOD/bin
+  229  ls
+  230  cc HLT_Mu50_IsoVVVL_PFHT450
+  231  exit
+  232  g
+  233  ls
+  234  cd VVVNanoLooper/
+  235  source source_all.sh 
+  236  g
+  237  cd
+  238  ls
+  239  ls -a
+  240  cd .ssh
+  241  ls
+  242  mkdir backup
+  243  mv backup/ backup_20_12_17
+  244  cp id_rsa id_rsa.pub backup_20_12_17
+  245  pwd
+  246  s
+  247  clear
+  248  ls
+  249  vim run.sh 
+  250  vim run_www.sh
+  251  source source_all.sh 
+  252  sh run_www.sh 
+  253  voms
+  254  sh run_www.sh 
+  255  rm www.root 
+  256  rm www2.root 
+  257  sh run_www.sh 
+  258  ls
+  259  l
+  260  pwd
+  261  exit
+  262  s
+  263  ls
+  264  cd ../../../
+  265  ls
+  266  cd ../
+  267  ls
+  268  cd tmp/
+  269  ls
+  270  cd slc6_amd64_gcc700/
+  271  ls
+  272  cd src/
+  273  ls
+  274  cd ../../
+  275  ls
+  276  cd ../
+  277  ls
+  278  cd bin/
+  279  ls
+  280  cd slc6_amd64_gcc700/
+  281  ls
+  282  cp hell7 /eos/user/q/qiguo/NanoAOD/VVVNanoLooper
+  283  cp hell7 /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/doVVVAnalysis
+  284  cp hell7 /eos/user/q/qiguo/NanoAOD/VVVNanoLooper
+  285  exit
+  286  g
+  287  ls
+  288  source source_all.sh 
+  289  pwd
+  290  ls
+  291  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  292  l
+  293  cp debug.root /eos/user/q/qiguo/temp
+  294  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  295  cp debug.root /eos/user/q/qiguo/temp
+  296  l
+  297  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  298  cp debug.root /eos/user/q/qiguo/temp
+  299  cp debug2.root /eos/user/q/qiguo/temp
+  300  cp debug2.root /eos/user/q/qiguo/temp/debug2.root 
+  301  cp debug.root /eos/user/q/qiguo/temp/debug2.root 
+  302  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  303  cp debug.root /eos/user/q/qiguo/temp/debug3.root 
+  304  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  305  cp debug.root /eos/user/q/qiguo/temp/debug4.root 
+  306  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  307  cp debug.root /eos/user/q/qiguo/temp/debug5.root 
+  308  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  309  cp debug.root /eos/user/q/qiguo/temp/debug6.root 
+  310  ls
+  311  ./doVVVAnalysis -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  312  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  313  ls
+  314  cp /eos/user/q/qiguo/NanoAOD/updateJER/JRDatabase/textFiles/Summer16_25nsV1_MC/* .
+  315  ./hell7 -i /eos/user/q/qiguo/aTGC/PrivateNanoAOD/16NanoAODv7/SUS-RunIISummer16NanoAODv7-00672.root --tree Events --mode 8 -n 200 --debug -w write
+  316  exit
+  317  g
+  318  ls
+  319  cd VVVNanoLooper/ls
+  320  cd VVVNanoLooper/l
+  321  cd VVVNanoLooper/
+  322  ls
+  323  source source_all.sh 
+  324  pwd
+  325  exit
+  326  s
+  327  cd ../../test/
+  328  ls
+  329  vim analysis.py 
+  330  sa
+  331  vim analysis.py 
+  332  c
+  333  cmsRun analysis.py 
+  334  ls
+  335  pwd
+  336  l
+  337  ls
+  338  vim analysis.py 
+  339  cmsRun analysis.py 
+  340  vim analysis.py 
+  341  cmsRun analysis.py 
+  342  vim analysis.py 
+  343  cmsRun analysis.py 
+  344  cmsRun analysis.py > Jerlog 2>&1 
+  345  vim Jerlog 
+  346  cmsRun analysis.py > Jerlog 2>&1 
+  347  vim J
+  348  vim Jerlog 
+  349  vim analysis.py 
+  350  exit
+  351  g
+  352  ls
+  353  cd NanoAOD/
+  354  sl
+  355  ls
+  356  cd updateJER/
+  357  sl
+  358  ls
+  359  cd CMSSW_9_2_0/
+  360  cd src/
+  361  g
+  362  cc JetResolution
+  363   cd /eos/user/q/qiguo/NanoAOD/updateJER/JRDatabase/textFiles/Summer16_25nsV1_MC/
+  364  ls
+  365  s
+  366  ls
+  367  cd ../plugins/
+  368  las
+  369  ls
+  370  cd VVV/
+  371  ls
+  372  vim VVV_AK4chs_info.h
+  373  cc ak4jetsSrc_
+  374  ls
+  375  vim VVVTreeMaker.h
+  376  ls
+  377  vim VVV_AK4chs_info.h
+  378  cd ../pl
+  379  ls
+  380  cd ../
+  381  ls
+  382  vim EDBRTreeMaker.cc
+  383  cd VVV/
+  384  ls
+  385  vim VVVTreeMaker.h
+  386  vim EDBRTreeMaker.cc
+  387  cd ../
+  388  ls
+  389  vim EDBRTreeMaker.cc
+  390  cc nevent
+  391  cd VVV/
+  392  ls
+  393  vim VVV_AK4chs_info.h
+  394  cc ak4jetsSrc_
+  395  cc t1jetSrc_userak4_,
+  396  cc t1jetSrc_userak4_
+  397  cc SmearedPt
+  398  ls
+  399  vim VVV_AK4chs_info.h
+  400  sa
+  401  cd ../
+  402  ls
+  403  vim EDBRTreeMaker.cc 
+  404  scram b -j 16
+  405  ls
+  406  cd VVV/
+  407  ls
+  408  vim VVV_METInfo.h
+  409  cd ../
+  410  scram b -j 16
+  411  vim VVV_AK4chs_info.h
+  412  ls
+  413  vim VVV_AK4chs_info.h
+  414  vim JetUserDataak4.cc
+  415  cd VVV/
+  416  ls
+  417  vim VVV_METInfo.h\
+  418  cd ../
+  419  vim EDBRTreeMaker.cc 
+  420  scram b -j 16
+  421  vim VVV/VVV_METInfo.h\
+  422  scram b -j 16
+  423  vim VVV/VVV_METInfo.h\
+  424  scram b -j 16
+  425  vim VVV/VVV_METInfo.h\
+  426  vim VVV/VVV_METInfo.h
+  427  vim JetUserDataak4.cc
+  428  exit
+  429  s
+  430  ls
+  431  vim VVV_AK4chs_info.h
+  432  cd ../
+  433  ls
+  434  vim JetUserDataak4.cc
+  435  cc MET_et_old
+  436  cc userFloat
+  437  cc (*ak4jets)[ik].
+  438  cc (*ak4jets)[ik]
+  439  cc \(*ak4jets\)[ik]
+  440  cc *ak4jets
+  441  cd ../
+  442  ls
+  443  cd ../
+  444  ls
+  445  cd EDBRCommon/python/
+  446  ls
+  447  vim goodJets_cff.py
+  448  exit
+  449  s
+  450  cd VVV/
+  451  ls
+  452  vim VVV_METInfo.h
+  453  exit
+  454  g
+  455  cd NanoAOD/
+  456  ls
+  457  cd ../
+  458  cd tm
+  459  cd temp/
+  460  ls
+  461  l
+  462  g
+  463  c
+  464  cd ../plugins/
+  465  ls
+  466  cd JetUserDataak4.cc
+  467  vim JetUserData.cc
+  468  ls
+  469  vim JetUserDataak4.cc
+  470  exit
+  471  g
+  472  ls
+  473  cd SWAN_projects/
+  474  ls
+  475  cd VVV_code/
+  476  ls
+  477  cd W
+  478  cd WVV_aQGC/
+  479  ls
+  480  cd VVV_headfile/
+  481  ls
+  482  cp check_one_variable.ipynb check_one_variable1.ipynb
+  483  l
+  484  nf test
+  485  cd ../
+  486  cp check_one_variable.ipynb test
+  487  ls -a
+  488  rm .ipynb_checkpoints
+  489  cd .ipynb_checkpoints
+  490  ls
+  491  cp check_one_variable-checkpoint.ipynb ../check_one_variable2.ipynb
+  492  cd ../
+  493  l
+  494  ls l-lth check_one_variable.ipynb
+  495  ls -lth check_one_variable.ipynb
+  496  vim check_one_variable.ipynb 
+  497  cd .ipynb_checkpoints
+  498  ls
+  499  rm check_one_variable-checkpoint.ipynb 
+  500  cd ../
+  501  ls
+  502  cp check_one_variable.ipynb check_one_variable.ipynb.new
+  503  mv check_one_variable.ipynb check_one_variable.ipynb.ew
+  504  ls
+  505  vim check_one_variable.ipynb.ew 
+  506  cp check_one_variable.ipynb.ew check_one_variable_new.ipynb
+  507  mv check_one_variable.ipynb.ew check_one_variable.ipynb
+  508  l
+  509  pwd
+  510  cd ../../
+  511  ls
+  512  cd ../
+  513  ls
+  514  du -sh
+  515  cd VVV_code
+  516  du -sh
+  517  cd V
+  518  ls
+  519  cd WVV_aQGC
+  520  du -sh
+  521  pwd
+  522  cd ../
+  523  ls
+  524  cd ../
+  525  ls
+  526  cd softdrop_mass
+  527  du -sh
+  528  ls
+  529  cd so
+  530  cd SoftdropOutput/
+  531  ls
+  532  cd ../
+  533  ls
+  534  l
+  535  rm test5.root test4.root test3.root test2.root test1.root test.root
+  536  du -sh
+  537  cd SD_headfile/
+  538  ls
+  539  cd ../
+  540  cd SoftdropOutput
+  541  du -sh
+  542  cd ../
+  543  cd plots/
+  544  ls
+  545  du -sh
+  546  cd ../
+  547  ls
+  548  cd backup/
+  549  ls
+  550  cd ../
+  551  pwd
+  552  exit
+  553  g
+  554  ls
+  555  cd jupyternote/
+  556  ls
+  557  cd CMSSW_11_2_0_pre7/src/
+  558  cmsenv
+  559  jupyter notebook --port 7890  --no-browser
+  560  cd ../../
+  561  ls
+  562  cd ../
+  563  ls
+  564  jupyter notebook --port 7890  --no-browser
+  565  jupyter notebook --port 7891  --no-browser
+  566  ls
+  567  jupyter notebook --port 7891  --no-browser
+  568  exit
+  569  ls
+  570  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/executable.sh .
+  571  ls
+  572  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  573  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root -n 100
+  574  ls
+  575  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/package.tar.gz .
+  576  ls
+  577  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root -n 100
+  578  l
+  579  vim executable.sh 
+  580  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root -n 100
+  581  ls
+  582  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/package.tar.gz .
+  583  l
+  584  pwd
+  585  l
+  586  vim executable.sh 
+  587  ls
+  588  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/package.tar.gz .
+  589  l
+  590  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root -n 100
+  591  l
+  592  vim executable.sh 
+  593  tar xf package.tar.gz
+  594  l
+  595  vim executable.sh 
+  596  . executable.sh 
+  597  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/package.tar.gz .
+  598  . executable.sh 
+  599  ls
+  600  pwd
+  601  cd -
+  602  ls
+  603  vim executable.sh 
+  604  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root -n 100
+  605  vim executable.sh 
+  606  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  607  vim executable.sh 
+  608  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  609  vim executable.sh 
+  610  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  611  ls
+  612  vim executable.sh 
+  613  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  614  rm Summer16_25nsV1*
+  615  ls
+  616  rm -r CMSSW_9_2_0
+  617  rm -r src
+  618  ls
+  619  l
+  620  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  621  ls
+  622  rm Summer16_25nsV1_M*
+  623  ls
+  624  rm output.root package.tar.gz
+  625  rm -r src/
+  626  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/package.tar.gz .
+  627  l
+  628  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  629  vim executable.sh 
+  630  ls
+  631  rm Summer16_25nsV1_MC_*
+  632  ls
+  633  rm output.root
+  634  ls
+  635  rm -r src/
+  636  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_    102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/package.tar.gz .
+  637  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/package.tar.gz .
+  638  l
+  639  cp /afs/cern.ch/work/q/qiguo/B2G/work/11/11_24/NanoAOD/VVVNanoLooper/condor/tasks/CondorTask_WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_NANOAODSIM_test/executable.sh .
+  640  vim executable.sh 
+  641  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  642  vim executable.sh 
+  643  rm output.root 
+  644  sh executable.sh 
+  645  sh executable.sh /eos/user/store/qiguo/ output /store/mc/RunIISummer16NanoAODv7/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/120000/B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  646  ls
+  647  sh executable.sh /eos/user/store/qiguo/ output /store/data/Run2016F/SingleMuon/NANOAOD/Nano25Oct2019-v1/30000/BA1BE85F-0089-544A-8E82-A4F8DB0E1586.root 1 CMSSW_9_2_0 slc6_amd64_gcc700  _store_mc_RunIISummer16NanoAODv7_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NANOAODSIM_PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1_120000_B4CDAAFD-56C3-BF4A-BFC7-20792ABFC8B0.root
+  648  vim executable.sh 
+  649  exit
+  650  ls
+  651  l
+  652  exit
+  653  ls
+  654  cd /eos/user/q/qiguo/NanoAOD/output
+  655  cd ../
+  656  ls
+  657  mkdir output_final
+  658  cd output_final
+  659  ls
+  660  nf 20_12_18
+  661  pwd
+  662  l
+  663  ls
+  664  cd ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1ext1-v1
+  665  ls
+  666  cd ..
+  667  du -sh
+  668  ls
+  669  ls > test
+  670  vim test 
+  671  cd WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8
+  672  du -sh
+  673  cd ../
+  674  ls
+  675  cd ../
+  676  ls
+  677  mv 20_12_18 20_12_18_bk
+  678  mkdir 20_12_18
+  679  cd 20_12_18
+  680  l
+  681  sls
+  682  ls
+  683  cd ../
+  684  ls
+  685  cd 20_12_18_bk/
+  686  ls
+  687  mkdir runB
+  688  cd runB/
+  689  cd ../
+  690  nf runF
+  691  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016F* .
+  692  ls
+  693  du -sh
+  694  ls
+  695  cd ../
+  696  ls
+  697  ls /eos/user/q/qiguo/NanoAOD/output > check
+  698  vim check 
+  699  cd WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8ext1-v1
+  700  ls
+  701  cd ../
+  702  vim test 
+  703  cd WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8
+  704  ls
+  705  :q
+  706  cd ../
+  707  ls
+  708  cd WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8ext1-v1
+  709  ls
+  710  cd ../
+  711  ls
+  712  ls *ext2*
+  713  ls
+  714  ls *ext2*
+  715  ls
+  716  ls -a
+  717  ls *ext2*
+  718  ls
+  719  vim test 
+  720  ls /eos/user/q/qiguo/NanoAOD/output > hh
+  721  vim hh 
+  722  ls ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1
+  723  cd ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1
+  724  cd ../
+  725  ls
+  726  cd 20_12_18
+  727  du -sh
+  728  ls
+  729  l
+  730  cd WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8
+  731  cd ../
+  732  cd -
+  733  ls
+  734  rm *
+  735  ls
+  736  du -sh
+  737  ls -lR|grep "^-"| wc -l
+  738  ls
+  739  cd /eos/user/q/qiguo/NanoAOD/output_final/20_12_18//WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8ext1-v1
+  740  l
+  741  cd ../
+  742  ls
+  743  du -sh
+  744  ls
+  745  nf runB
+  746  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016B* .
+  747  ls
+  748  du -sh
+  749  ls -l|grep "^-"| wc -l
+  750  cd ../ls
+  751  cd ../
+  752  ls
+  753  nf RunC
+  754  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016C* .
+  755  ls -l|grep "^-"| wc -l
+  756  cd ..
+  757  nf RunD
+  758  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016D* .
+  759  ls -l|grep "^-"| wc -l
+  760  cd ../
+  761  nf RunE
+  762  ls -l|grep "^-"| wc -l
+  763  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016E* .
+  764  ls -l|grep "^-"| wc -l
+  765  ls
+  766  cd ../
+  767  ls
+  768  nf RunF
+  769  ls
+  770  ls -l|grep "^-"| wc -l
+  771  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016F* .
+  772  ls -l|grep "^-"| wc -l
+  773  nf ../RunG
+  774  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016G* .
+  775  ls -l|grep "^-"| wc -l
+  776  nf ../RunH
+  777  cp /eos/user/q/qiguo/NanoAOD/output/*Run2016H* .
+  778  ls -l|grep "^-"| wc -l
+  779  cd ../runB/
+  780  ls -l|grep "^-"| wc -l
+  781  ls
+  782  cd ../
+  783  ls
+  784  mv runB/ RunB
+  785  ls
+  786  ls RunB/
+  787  ls
+  788  du -sh
+  789  l
+  790  cd ../
+  791  ls
+  792  cd 20_12_18
+  793  ls
+  794  rm *.root
+  795  ls
+  796  cd ../
+  797  ls
+  798  mkdir 20_12_18_final
+  799  cd 20_12_18_final
+  800  ls
+  801  pwd
+  802  l
+  803  ls
+  804  du -sh
+  805  l
+  806  ls
+  807  pwd
+  808  cp WWToLNuQQ_13TeV-powheg.root /eos/user/q/qiguo/temp
+  809  l
+  810  cd tree_sf_new/
+  811  ls
+  812  pwd
+  813  l
+  814  cd ../
+  815  ls
+  816  pwd
+  817  exit
+  818  clear
+  819  exit
+  820  g
+  821  cd /eos/user/q/qiguo/NanoAOD/transfer/v2/Mu16
+  822  ls
+  823  g
+  824  go
+  825  g
+  826  ls
+  827  cd CMSSW_8_2_0/src/
+  828  cmsenv
+  829  cd ../../
+  830  root -l
+  831  ls
+  832  l
+  833  python runEDBR2PKUTree_vvv_nanoAOD.py
+  834  pwd
+  835  l
+  836  vim runEDBR2PKUTree_vvv_nanoAOD.py
+  837  root -l
+  838  python runEDBR2PKUTree_vvv_nanoAOD.py
+  839  root -l
+  840  python runEDBR2PKUTree_vvv_nanoAOD.py
+  841  exit
+  842  g
+  843  cd
+  844  ls
+  845  cd goto/
+  846  ls
+  847  cd dir/
+  848  ls
+  849  cd ../
+  850  ls
+  851  cd dir/
+  852  ls
+  853  vim Nano-aGQC
+  854  vim Nano-aQGC
+  855  cd ../
+  856  vim forderlist1 
+  857  ls dir/
+  858  vim forderlist1 
+  859  cd /eos/user/q/qiguo/NanoAOD/output_final/20_12_18_final/
+  860  ls
+  861  l
+  862  cd tree_sf_new/
+  863  ls
+  864  l
+  865  pwd
+  866  ls
+  867  l
+  868  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia82.root
+  869  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia.root
+  870  exit
+  871  g
+  872  ls
+  873  cd jupyternote/
+  874  ls
+  875  cd CMSSW_11_2_0_pre7/src/
+  876  cmsenv
+  877  ls
+  878  cd ../../
+  879  ls
+  880  jupyter notebook --port 7890  --no-browser
+  881  dc ../
+  882  cd ../
+  883  jupyter notebook --port 7890  --no-browser
+  884  exit
+  885  clear
+  886  exit
+  887  vim .bashrc
+  888  g
+  889  cd VVVNanoLooper/
+  890  vim source_all.sh 
+  891  vim rooutil/root.sh
+  892  exit
+  893  g
+  894  cd
+  895  lx
+  896  cd goto/
+  897  ls
+  898  vim juputer.sh
+  899  pwd
+  900  vim juputer.sh
+  901  echo -n $1
+  902  cd 
+  903  vim . bashr
+  904  vim .bashr
+  905  vim .bashrc
+  906  exit
+  907  cd goto/
+  908  ls
+  909  vim juputer.sh 
+  910  echo “$UID”
+  911  echo “$USER”
+  912  host
+  913  host -name
+  914  hostname
+  915  vim juputer.sh 
+  916  ls
+  917  g
+  918  ls
+  919  cd transfertree/
+  920  ls
+  921  cd /eos/user/q/qiguo/NanoAOD/output_final/20_12_18_final/
+  922  ls
+  923  exit
+  924  g
+  925  cd CMSSW_8_2_0/src/
+  926  cmsenv 
+  927  cd ../../
+  928  ls
+  929  l
+  930  vim runEDBR2PKUTree_vvv_nanoAOD.py
+  931  root -l
+  932  exit
+  933  g
+  934  cd CMSSW_8_2_0/src/
+  935  cmsenv
+  936  cd ../../
+  937  root -l
+  938  ls
+  939  python runEDBR2PKUTree_vvv_nanoAOD.py
+  940  exit
+  941  cd /eos/user/q/qiguo/NanoAOD/output_final/20_12_18_final/tree_sf_new/
+  942  ls
+  943  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia.root 5mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia.root
+  944  l
+  945  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia.root 5mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia.root
+  946  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root 5mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia.root
+  947  mv 5mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia.root mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root
+  948  exit
+  949  vim .bashrc
+  950  ls
+  951  vim goto/juputer.sh 
+  952  vim .bashrc
+  953  exit
+  954  hostname
+  955  ju
+  956  ls
+  957  cd
+  958  vim .bashrc
+  959  vim /afs/cern.ch/user/q/qiguo/goto/juputer.sh
+  960  source .bashrc
+  961  g
+  962  cd CMSSW_8_2_0/src/
+  963  cmsenv
+  964  cd ../../
+  965  root -l
+  966  ls
+  967  python runEDBR2PKUTree_vvv_nanoAOD.py
+  968  root -l
+  969  ls
+  970  python runEDBR2PKUTree_vvv_nanoAOD.py
+  971  root -l
+  972  cd CMSSW_8_2_0/src/
+  973  cmsenv
+  974  cd ../../
+  975  root -l
+  976  exit
+  977  cd /eos/user/q/qiguo/NanoAOD/output_final/20_12_18_final/tree_sf_new/
+  978  ls
+  979  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root 5mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root
+  980  ls
+  981  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root 6mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root
+  982  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root 7mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root
+  983  mv mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root 8mu_out_WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8.root
+  984  exit
+  985  cd
+  986  g
+  987  cd CMSSW_8_2_0/src/
+  988  cmsenv
+  989  cd ../../
+  990  root -l
+  991  ls
+  992  python runEDBR2PKUTree_vvv_nanoAOD.py
+  993  root -l
+  994  python runEDBR2PKUTree_vvv_nanoAOD.py
+  995  root -l
+  996  python runEDBR2PKUTree_vvv_nanoAOD.py
+  997  exit
+  998  ju
+  999  exit
+ 1000  g
+ 1001  ls
+ 1002  clear
+ 1003  ls
+ 1004  l
+ 1005  vim runEDBR2PKUTree_vvv_nanoAOD.py
+ 1006  vim filelist_www_nanoAOD.txt
+ 1007  ls
+ 1008  vim runEDBR2PKUTree_vvv_nanoAOD.py
+ 1009  vim filelist_www_nanoAOD.txt
+ 1010  cp runEDBR2PKUTree_vvv_nanoAOD.py runEDBR2PKUTree_vv_nanoAOD.py
+ 1011  vim runEDBR2PKUTree_vv_nanoAOD.py
+ 1012  vim filelist_other_nanoAOD.txt
+ 1013  cp runEDBR2PKUTree_vv_nanoAOD.py runEDBR2PKUTree_ST_nanoAOD.py
+ 1014  vim runEDBR2PKUTree_ST_nanoAOD.py
+ 1015  vim filelist_ST_nanoAOD.txt
+ 1016  cp filelist_ST.txt filelist_ST_nanoAOD.txt
+ 1017  vim filelist_ST_nanoAOD.txt
+ 1018  cp runEDBR2PKUTree_vv_nanoAOD.py runEDBR2PKUTree_TTBar_nanoAOD.py
+ 1019  vim runEDBR2PKUTree_TTBar_nanoAOD.py
+ 1020  cp filelist_TTbar.txt filelist_TTBar_nanoAOD.txt
+ 1021  vim filelist_TTBar_nanoAOD.txt
+ 1022  vim filelist1.txt
+ 1023  cp runEDBR2PKUTree_vv_nanoAOD.py runEDBR2PKUTree_WJets1_nanoAOD.py
+ 1024  vim runEDBR2PKUTree_WJets1_nanoAOD.py
+ 1025  vim filelist_WJets.txt
+ 1026  vim filelist_WJets_2.txt 
+ 1027  cp filelist_WJets_2.txt filelist_WJets1_nanoAOD.txt
+ 1028  vim filelist_WJets1_nanoAOD.txt
+ 1029  cp runEDBR2PKUTree_WJets1_nanoAOD.py runEDBR2PKUTree_WJets2_nanoAOD.py
+ 1030  vim filelist_WJets1_nanoAOD.txt
+ 1031  vim runEDBR2PKUTree_WJets2_nanoAOD.py
+ 1032  cp filelist_WJets_3.txt filelist_WJets2_nanoAOD.txt
+ 1033  vim filelist_WJets2_nanoAOD.txt
+ 1034  cp runEDBR2PKUTree_WJets2_nanoAOD.py runEDBR2PKUTree_WJets3_nanoAOD.py
+ 1035  vim runEDBR2PKUTree_WJets3_nanoAOD.py
+ 1036  cp filelist_WJets_4.txt filelist_WJets1_nanoAOD.txt
+ 1037  vim runEDBR2PKUTree_WJets3_nanoAOD.py
+ 1038  cp filelist_WJets_2.txt filelist_WJets1_nanoAOD.txt
+ 1039  vim filelist_WJets1_nanoAOD.txt
+ 1040  cp filelist_WJets_4.txt filelist_WJets3_nanoAOD.txt
+ 1041  vim filelist_WJets3_nanoAOD.txt
+ 1042  cp runEDBR2PKUTree_WJets3_nanoAOD.py runEDBR2PKUTree_WJets4_nanoAOD.py
+ 1043  vim runEDBR2PKUTree_WJets4_nanoAOD.py
+ 1044  cp filelist_WJets_5.txt filelist_WJets4_nanoAOD.txt
+ 1045  vim filelist_WJets3_nanoAOD.txt
+ 1046  vim runEDBR2PKUTree_WJets4_nanoAOD.py
+ 1047  vim filelist_WJets4_nanoAOD.txt
+ 1048  cp runEDBR2PKUTree_WJets4_nanoAOD.py runEDBR2PKUTree_WJets5_nanoAOD.py
+ 1049  vim runEDBR2PKUTree_WJets5_nanoAOD.py
+ 1050  cp filelist_WJets_6.txt filelist_WJets5_nanoAOD.txt
+ 1051  vim filelist_WJets5_nanoAOD.txt
+ 1052  vim filelist_WJets4_nanoAOD.txt
+ 1053  vim filelist_WJets5_nanoAOD.txt
+ 1054  clear
+ 1055  l
+ 1056  vim runEDBR2PKUTree_other_nanoAOD.py
+ 1057  vim filelist_other_nanoAOD.txt
+ 1058  vim runEDBR2PKUTree_vv_nanoAOD.py
+ 1059  vim filelist_vv_nanoAOD.txt
+ 1060  vim filelist_other_nanoAOD.txt
+ 1061  vim runEDBR2PKUTree_vv_nanoAOD.py
+ 1062  python runEDBR2PKUTree_WJets3_nanoAOD.py & python runEDBR2PKUTree_WJets5_nanoAOD.py &
+ 1063  cd CMSSW_8_2_0/src/
+ 1064  cmsenv
+ 1065  cd ../../
+ 1066  python runEDBR2PKUTree_WJets3_nanoAOD.py & python runEDBR2PKUTree_WJets5_nanoAOD.py &
+ 1067  top
+ 1068  vim runEDBR2PKUTree_WJets2_nanoAOD.py
+ 1069  vim filelist_WJets2_nanoAOD.txt
+ 1070  vim filelist_WJets3_nanoAOD.txt
+ 1071  vim runEDBR2PKUTree_WJets3_nanoAOD.py
+ 1072  python  runEDBR2PKUTree_WJets3_nanoAOD.py
+ 1073  history > hhh

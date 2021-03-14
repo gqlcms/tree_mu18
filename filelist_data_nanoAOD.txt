@@ -1,0 +1,4 @@
+Run2018A_SingleMuon.root    ; 1.  ; 1
+Run2018B_SingleMuon.root    ; 1.  ; 1
+Run2018C_SingleMuon.root    ; 1.  ; 1
+Run2018D_SingleMuon.root    ; 1.  ; 1

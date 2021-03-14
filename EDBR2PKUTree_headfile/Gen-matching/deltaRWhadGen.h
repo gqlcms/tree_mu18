@@ -1,0 +1,1 @@
+		Double_t deltaRWhadGen = sqrt(pow(etaGenVhad-jetAK8puppi_eta,2) + pow(phiGenVhad-jetAK8puppi_phi,2));

@@ -1,0 +1,3 @@
+WWW_aQGC.root    ; 386.4  ; 50000
+WZZ_aQGC.root    ; 8.102  ; 50000
+WWZ_aQGC.root  ;  36.04  ;  180000

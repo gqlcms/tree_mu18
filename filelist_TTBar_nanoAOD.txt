@@ -1,0 +1,3 @@
+TTToHadronic_TuneCP5_13TeV-powheg-pythia8ext2-v1.root  ; 380094.  ; 74928529
+TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8ext3-v1.root  ; 364350.8  ; 74928529
+TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8.root  ; 87314.48  ; 74928529

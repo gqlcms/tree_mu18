@@ -1,0 +1,2 @@
+ttZJets_13TeV_madgraphMLM-pythia8.root  ;  652.9  ;  9874825
+ttWJets_13TeV_madgraphMLM.root  ;  204.3  ;  6972048

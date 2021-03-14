@@ -1,0 +1,124 @@
+    // Lepton
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonPt" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonEta" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonPhi" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonE" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonPDGID" );
+    ana.tx.createBranch<float>("Lep1fatJet2_Muon_pfRelIso04_all" );
+
+    // MET
+    ana.tx.createBranch<float>("Lep1fatJet2_MET_pt" );
+    ana.tx.createBranch<float>("Lep1fatJet2_MET_phi" );
+    ana.tx.createBranch<float>("Common_MET_pt_JER" );
+    ana.tx.createBranch<float>("Common_MET_phi_JER" );
+
+    // neutrino
+    ana.tx.createBranch<float>("Lep1fatJet2_NeutrinoPt" );
+    ana.tx.createBranch<float>("Lep1fatJet2_NeutrinoEta" );
+    ana.tx.createBranch<float>("Lep1fatJet2_Neutrinophi" );
+    ana.tx.createBranch<float>("Lep1fatJet2_NeutrinoE" );
+
+    // Leptonic W
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonicWPt" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonicWEta" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonicWPhi" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonicWM" );
+    ana.tx.createBranch<float>("Lep1fatJet2_LeptonicWMt" );
+
+    // Jet
+    ana.tx.createBranch<vector<float>>("Common_Jet_pt_JER");
+    ana.tx.createBranch<vector<LorentzVector>>("Common_Jet_JER_p4");
+    ana.tx.createBranch<vector<float>>("Common_Jet_pt_unJER");
+    ana.tx.createBranch<vector<float>>("Common_JER_matching");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_Jet_btagDeepB");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_Jet_btagDeepC");
+    ana.tx.createBranch<vector<int>>("Lep1fatJet2_Jet_jetId");
+    ana.tx.createBranch<vector<int>>("Lep1fatJet2_Jet_hadronFlavour");
+    ana.tx.createBranch<vector<int>>("Lep1fatJet2_Jet_partonFlavour");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_Jet_pt_JER");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_Jet_eta");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_Jet_phi");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_Jet_e");
+   
+    // fatJet
+    ana.tx.createBranch<vector<LorentzVector>>("Common_fatJet_JER_p4");
+    ana.tx.createBranch<vector<float>>("Common_fatJet_pt_JER");
+    ana.tx.createBranch<vector<float>>("Common_fatJet_pt_unJER");
+    ana.tx.createBranch<vector<float>>("Common_fatJER_matching");
+    ana.tx.createBranch<vector<int>>("Lep1fatJet2_FatJet_jetId");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_FatJet_pt_JER");
+
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_ptJECJER");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_ptJEC");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_eta");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_phi");
+    ana.tx.createBranch<int>("Lep1fatJet2_jetAK8puppi_tightid");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_sd");
+    ana.tx.createBranch<float>("Lep1fatJet2_jet_rawFactor");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnDecorrW");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnW");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnDecorrZ");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnZ");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnDecorrTop");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnTop");
+    
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_ptJECJER_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_ptJEC_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_eta_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_phi_2");
+    ana.tx.createBranch<int>("Lep1fatJet2_jetAK8puppi_tightid_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_sd_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jet_rawFactor_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnDecorrW_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnW_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnDecorrZ_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnZ_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnDecorrTop_2");
+    ana.tx.createBranch<float>("Lep1fatJet2_jetAK8puppi_dnnTop_2");
+
+    // Gen
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_ptgenzl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_etagenzl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_phigenzl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_energygenzl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q1_pt");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q1_eta");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q1_phi");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q1_e");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q1_pdg");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q2_pt");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q2_eta");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q2_phi");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q2_e");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genz_q2_pdg");
+
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_ptgenwl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_etagenwl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_phigenwl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_energygenwl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q1_pt");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q1_eta");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q1_phi");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q1_e");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q1_pdg");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q2_pt");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q2_eta");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q2_phi");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q2_e");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_genw_q2_pdg");
+
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_ptgentopl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_etagentopl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_phigentopl");
+    ana.tx.createBranch<vector<float>>("Lep1fatJet2_energygentopl");
+
+    // selection
+    ana.tx.createBranch<int>("Lep1fatJet2_Preselection");
+
+    // weight, HLT
+    ana.tx.createBranch<float>("Lep1fatJet2_L1PreFiringWeight_Nom");
+    ana.tx.createBranch<float>("Lep1fatJet2_Pileup_nTrueInt");
+    ana.tx.createBranch<float>("Lep1fatJet2_Pileup_nPU");
+    ana.tx.createBranch<int>("Lep1fatJet2_HLT_Mu50");
+    ana.tx.createBranch<int>("Lep1fatJet2_HLT_IsoMu24");
+    ana.tx.createBranch<int>("Lep1fatJet2_HLT_Ele27");

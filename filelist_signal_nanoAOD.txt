@@ -1,0 +1,12 @@
+aQGC_all.root  ; 431.7 ; 4944375
+aQGC1.root  ; 431.7 ; 4944375
+aQGC2.root  ; 431.7 ; 4944375
+aQGC3.root  ; 431.7 ; 4944375
+aQGC4.root  ; 431.7 ; 4944375
+aQGC5.root  ; 431.7 ; 4944375
+aQGC6.root  ; 431.7 ; 4944375
+aQGC7.root  ; 431.7 ; 4944375
+aQGC8.root  ; 431.7 ; 4944375
+aQGC9.root  ; 431.7 ; 4944375
+aQGC10.root  ; 431.7 ; 4944375
+

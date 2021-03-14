@@ -1,0 +1,537 @@
+#define EDBR2PKUTree_cxx
+
+
+#include "EDBR2PKUTree_headfile/EDBR2PKUTree.h"
+
+#include <TH2.h>
+#include <TStyle.h>
+#include <TCanvas.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+#define Pi 3.141593
+
+#include "EDBR2PKUTree_headfile/SumPt.h"
+#include "EDBR2PKUTree_headfile/bsv_deep.h"
+#include "EDBR2PKUTree_headfile/endpoint.h"
+#include "EDBR2PKUTree_headfile/generate_weights.h"
+
+#include "EDBR2PKUTree_headfile/AK8.h"
+#include "EDBR2PKUTree_headfile/all_kinds_deltaR.h"
+#include "EDBR2PKUTree_headfile/BSF.h"
+#include "EDBR2PKUTree_headfile/in_and_ex_ak4.h"
+#include "EDBR2PKUTree_headfile/lepton.h"
+#include "EDBR2PKUTree_headfile/leptonicw.h"
+#include "EDBR2PKUTree_headfile/M_jjlv.h"
+#include "EDBR2PKUTree_headfile/MassVV.h"
+#include "EDBR2PKUTree_headfile/match_particle_for_each_jet.h"
+#include "EDBR2PKUTree_headfile/Mj_oder.h"
+#include "EDBR2PKUTree_headfile/Nsubjetness.h"
+#include "EDBR2PKUTree_headfile/num_of_AK8_AK4.h"
+#include "EDBR2PKUTree_headfile/num_of_bJet.h"
+#include "EDBR2PKUTree_headfile/pt_order_consider_w.h"
+#include "EDBR2PKUTree_headfile/resloved_boson.h"
+#include "EDBR2PKUTree_headfile/resolved_boson_0AK8.h"
+#include "EDBR2PKUTree_headfile/ST.h"
+#include "EDBR2PKUTree_headfile/sd_corr.h"
+#include "EDBR2PKUTree_headfile/weight_dnn_corr.h"
+#include "EDBR2PKUTree_headfile/weight_tau_or_deep_corr.h"
+
+
+
+//#include "EDBR2PKUTree_headfile/"
+
+//#include "BTagCalibrationStandalone.h"
+//
+
+
+
+void EDBR2PKUTree::Loop(TString channelname, Double_t XS, TTree *treew, Int_t IsData,Int_t IsMET) {
+    cout<<endl<<"IsMET  "<<IsMET<<"   "<<IsData<<endl;
+	std::vector<Double_t> weights_pu1; //these are made with our recipe
+	std::vector<Double_t> weights_pu2; //these are made with the official recipe
+	TFile* pileupFile1 = TFile::Open("MyDataPileupHistogram.root");//pileupDataRun2016BH_63mb_80X.root");  
+	TH1F* pileupHisto1 = (TH1F*)pileupFile1->Get("pileup");  
+	weights_pu1 = generate_weights(pileupHisto1,0);
+	pileupFile1->Close();
+
+	//  TFile* pileupFile2 = TFile::Open("puweights.root");  
+	TFile* pileupFile2 = TFile::Open("PUxSynch.root");  
+	TH1F *pileupHisto2 = (TH1F*)pileupFile2->Get("puweights");
+	weights_pu2 = generate_weights(pileupHisto2,1);
+	pileupFile2->Close();
+
+
+	TFile * input1 = new TFile ("puweight.root");	
+	TH1F* hR1= (TH1F*)input1->Get("h2");
+
+
+
+	if (fChain == 0) return;
+	Long64_t nentries = fChain->GetEntriesFast();
+
+	Double_t n_deltaRlepjet = 0; 
+	Double_t n_delPhijetlep = 0; 
+	Double_t ntau = 0;
+	Double_t number_qq = 0; 
+	Double_t nmassVhad = 0; 
+	Double_t nptVlepJEC = 0;
+	Double_t nID_e = 0;
+	Double_t npt_e = 0;
+	Double_t nmet_e = 0; 
+	Double_t nnum_bJet_e = 0; 
+	Double_t n_delPhijetmet = 0; 
+
+	Double_t nID_mu = 0;
+	Double_t npt_mu = 0;
+	Double_t nmet_mu = 0; 
+	Double_t nnum_bJet_mu = 0; 
+	//Double_t nbtb_mu = 0; 
+
+	Double_t nptVhad = 0;
+	Double_t yields = 0;
+	//TLorentzVector jetV, genjetV;
+	//some constants inside this analysis
+	Double_t pi_2=1.57079632679;
+    Double_t theWeightw;
+    //treew->GetBranchAdrress("theWeight",&theWeightw);
+	Long64_t npp = treew->GetEntries("theWeight>0.");
+	Long64_t nmm = treew->GetEntries("theWeight<0.");
+	cout<<"npp="<<npp<<" nmm="<<nmm<<" totaleventnumber="<<(treew->GetEntries())<<"   number of events passed= "<<nentries<<endl;
+
+	Double_t nn;
+	Double_t eff_and_pu_Weight;
+	Double_t eff_and_pu_Weight1;
+	Double_t Identical_lumiWeight = XS;//All the events inside a sample are same lumiweight
+	//Double_t Identical_lumiWeight = XS/totaleventnumber;//All the events inside a sample are same lumiweight
+
+    TFile * elereco = new TFile ("EGM2D_BtoH_GT20GeV_RecoSF_Legacy2016.root");
+    TH2D* sfelereco= (TH2D*) elereco->Get("EGamma_SF2D");
+
+    TFile * elehlt = new TFile ("egammaEffi.txt_EGM2D.root");
+    TH2D* sfelehltbar= (TH2D*) elehlt->Get("SF_TH2F_Barrel");
+    TH2D* sfelehltend= (TH2D*) elehlt->Get("SF_TH2F_EndCap");
+
+    TFile * muhlt = new TFile ("EfficienciesAndSF_RunBtoF.root");
+    TH2D* sfmuhlt= (TH2D*) muhlt->Get("Mu50_OR_TkMu50_PtEtaBins/efficienciesDATA/abseta_pt_DATA");
+    TH2D* sfmuhlt2= (TH2D*) muhlt->Get("Mu50_OR_TkMu50_PtEtaBins/efficienciesMC/abseta_pt_MC");
+
+    TFile * muhlt1 = new TFile ("EfficienciesAndSF_Period4.root");
+    TH2D* sfmuhlt3= (TH2D*) muhlt1->Get("Mu50_OR_TkMu50_PtEtaBins/efficienciesDATA/abseta_pt_DATA");
+    TH2D* sfmuhlt4= (TH2D*) muhlt1->Get("Mu50_OR_TkMu50_PtEtaBins/efficienciesMC/abseta_pt_MC");
+
+    TFile * methlt = new TFile ("myTriggerScaleFactors_2016.root");
+    TH2D* sfmethlt= (TH2D*) methlt->Get("MET_MU_DATA");
+    TH2D* sfmethlt1= (TH2D*) methlt->Get("MET_MU_MC");
+
+    TFile * muid = new TFile ("RunGH_SF_ID.root");
+    TH2D* sfmuid= (TH2D*) muid->Get("NUM_HighPtID_DEN_genTracks_eta_pair_newTuneP_probe_pt");
+
+    TFile * muid1 = new TFile ("RunBCDEF_SF_ID-2.root");
+    TH2D* sfmuid1= (TH2D*) muid1->Get("NUM_HighPtID_DEN_genTracks_eta_pair_newTuneP_probe_pt");
+
+    TFile * muiso = new TFile ("RunBCDEF_SF_ISO-2.root");
+    TH2D* sfmuiso= (TH2D*) muiso->Get("NUM_LooseRelTkIso_DEN_HighPtIDandIPCut_eta_pair_newTuneP_probe_pt");
+
+    TFile * muiso1 = new TFile ("RunGH_SF_ISO.root");
+    TH2D* sfmuiso1= (TH2D*) muiso1->Get("NUM_LooseRelTkIso_DEN_HighPtIDandIPCut_eta_pair_newTuneP_probe_pt");
+
+
+
+double dnn_corr_t60[20] = {1.17632061448,1.16495811349,1.01810830074,0.966049196558,0.92420465487,0.911264861325,0.988900385026,0.9813525651,0.992416197462,0.983912990526,0.965200560156,0.958772731415,0.962461915697,0.967269065268,1.11356707886,1.02358424442,1.37415244161,1.21025178237,1.26051558367,1.41164967254};
+double dnn_corr_w60[20] = {1.85821858885,1.34905683327,0.908316834659,0.699749783686,0.329113071317,0.987950896932,0.835575087979,1.03205969712,0.891734031096,0.990452521359,0.919696889432,0.983140795981,0.841388664052,0.812643985365,0.698568003698,0.757988210937,0.651463495899,0.737621065734,0.718820005326,0.489286047378};
+double dnn_corr_q60[20] = {0.394536303807,0.578529365642,0.753942891599,0.834897792016,0.972789065137,0.924580619938,1.02973873497,1.00997355902,1.18149830842,1.16898018904,1.26564063313,1.25471537646,1.48257454199,1.48976864361,1.63419529423,1.76031648635,1.72778472568,1.96525626849,2.10094382271,2.24586230036};
+double dnn60[21] = {0.0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0};
+double dnn_corr_t100[15] = {1.0606607231,1.0826085179,1.17347785441,1.01982391517,1.06953541688,1.01386610667,0.849017039436,1.02662222472,0.899843102587,0.786123810158,0.894546804748,1.02779348751,0.8754927327,0.640298731453,0.639906664811};
+double dnn_corr_w100[15] = {1.77421989463,1.35924770238,1.12356916013,0.392676033627,0.284038409702,0.246824657173,0.233686248196,-0.590573717697,0.48150504793,0.739377051037,0.654824294156,0.92610489067,1.05063080233,1.47795790806,1.31692510236};
+double dnn_corr_q100[15] = {0.687266918148,0.769754709091,0.78448292235,1.00855273501,1.01213629046,1.04314586015,1.1135755598,1.22252149154,1.21300091816,1.31665008822,1.31161309561,1.23505206691,1.23689640143,1.2559544879,1.27809530557};
+double dnn100[16] = {0.0,0.05,0.1,0.15,0.2,0.3,0.4,0.5,0.6,0.7,0.75,0.8,0.85,0.9,0.95,1.0};
+double dnn_corr_t150[14] = {0.939347855856,0.938784626029,0.917074494858,0.914195871734,1.02700373303,1.00642665098,1.09494793887,1.06643657764,0.941273856315,0.850004598804,0.846970304408,0.998947860073,0.921089010587,0.982692873036};
+double dnn_corr_q150[14] = {0.884607323807,0.887239712064,0.988707162068,1.00216109036,0.987035366601,1.12873509025,0.820557825051,1.01399365087,1.06037711928,1.64653085285,1.64826171567,1.56156864401,1.60598193115,1.5708410313};
+double dnn150[15] = {0.0,0.05,0.1,0.15,0.2,0.25,0.4,0.55,0.6,0.75,0.8,0.85,0.9,0.95,1.0};
+double dnn_corr_t200[4] = {1.10171188733,1.22285375206,0.539648903836,1.13016576977};
+double dnn_corr_q200[4] = {1.03701429685,0.784239673081,1.26670788311,1.09459657083};
+double dnn200[5] = {0.0,0.25,0.5,0.75,1.0};
+
+
+	int bin60=sizeof(dnn_corr_t60)/sizeof(dnn_corr_t60[0]);
+	int bin100=sizeof(dnn_corr_t100)/sizeof(dnn_corr_t100[0]);
+	int bin150=sizeof(dnn_corr_t150)/sizeof(dnn_corr_t150[0]);
+	int bin200=sizeof(dnn_corr_t200)/sizeof(dnn_corr_t200[0]);
+        Double_t massdnn[5]={60,100,150,200,1000000};
+
+	TH1D *h_t60=new TH1D("h_t60","",bin60,0,1);
+	TH1D *h_q60=new TH1D("h_q60","",bin60,0,1);
+	TH1D *h_w60=new TH1D("h_w60","",bin60,0,1);
+	TH1D *h_t100=new TH1D("h_t100","",bin100,0,1);
+	TH1D *h_q100=new TH1D("h_q100","",bin100,0,1);
+	TH1D *h_w100=new TH1D("h_w100","",bin100,0,1);
+	TH1D *h_t150=new TH1D("h_t150","",bin150,0,1);
+	TH1D *h_q150=new TH1D("h_q150","",bin150,0,1);
+	TH1D *h_t200=new TH1D("h_t200","",bin200,0,1);
+	TH1D *h_q200=new TH1D("h_q200","",bin200,0,1);
+	h_t60->SetBins(bin60,dnn60);
+	h_q60->SetBins(bin60,dnn60);
+	h_w60->SetBins(bin60,dnn60);
+	h_t100->SetBins(bin100,dnn100);
+	h_q100->SetBins(bin100,dnn100);
+	h_w100->SetBins(bin100,dnn100);
+	h_t150->SetBins(bin150,dnn150);
+	h_q150->SetBins(bin150,dnn150);
+	h_t200->SetBins(bin200,dnn200);
+	h_q200->SetBins(bin200,dnn200);
+	for(int i=0;i<bin60;i++){
+	h_t60->SetBinContent(i+1,dnn_corr_t60[i]);
+	h_q60->SetBinContent(i+1,dnn_corr_q60[i]);
+	h_w60->SetBinContent(i+1,dnn_corr_w60[i]);
+	}
+	for(int i=0;i<bin100;i++){
+	h_t100->SetBinContent(i+1,dnn_corr_t100[i]);
+	h_q100->SetBinContent(i+1,dnn_corr_q100[i]);
+	h_w100->SetBinContent(i+1,dnn_corr_w100[i]);
+	}
+	for(int i=0;i<bin150;i++){
+	h_t150->SetBinContent(i+1,dnn_corr_t150[i]);
+	h_q150->SetBinContent(i+1,dnn_corr_q150[i]);
+	}
+	for(int i=0;i<bin200;i++){
+	h_t200->SetBinContent(i+1,dnn_corr_t200[i]);
+	h_q200->SetBinContent(i+1,dnn_corr_q200[i]);
+	}
+
+	Long64_t nbytes = 0, nb = 0;
+	//for (Long64_t jentry=0; jentry<10;jentry++)
+	for (Long64_t jentry=0; jentry<nentries;jentry++)
+	{
+		Long64_t ientry = LoadTree(jentry);
+		if (ientry < 0) break;
+                   if (jentry%1000000==0)
+                      {std::cout<<jentry<<std::endl;}
+		nb = fChain->GetEntry(jentry);
+        //cout<<ientry<<"    "<<theWeight<<endl;
+		nbytes += nb;
+		
+		
+		Nsubjetness();
+		
+		Mjjlv();
+		
+        leptonicW();
+        
+        lepton();
+        
+        AK8Jet();
+            
+
+
+
+        triggerWeight=1;
+
+
+
+
+
+
+
+        
+
+
+		//Weight Calculation
+        if(IsData>0 && npT<0) continue;
+		Int_t bin = hR1->FindBin(npT);
+		pileupWeight = hR1->GetBinContent(bin);		
+
+		eff_and_pu_Weight = 0;
+		eff_and_pu_Weight1 = 0;
+		if(IsData>0) {
+			if(npT < weights_pu1.size()){
+				eff_and_pu_Weight = weights_pu1[npT];
+			}
+			if(npT < weights_pu2.size()){
+				eff_and_pu_Weight1 = weights_pu2[npT];
+			}
+		}
+
+
+
+        if(IsData>0){
+    if(channelname=="el"){
+        trigger_eff=1.0;
+        Double_t El_MC=1.0;
+        Double_t El_Data=1.0;
+        Double_t MET_MC=1.0;
+        Double_t MET_Data=1.0;
+        //https://indico.cern.ch/event/787353/contributions/3417731/attachments/1842466/3127748/190821__JaesungKim__EGammaHLTMeeting__EGammaHLTEfficiency_for_WRAnalysis_update.pdf
+        if(ptlep1>=sfelehltbar->GetYaxis()->GetBinLowEdge(1)&&ptlep1<=sfelehltbar->GetYaxis()->GetBinUpEdge(sfelehltbar->GetNbinsY())){
+        if (fabs(etalep1)<1.444) {
+            int elebinhltbar=sfelehltbar->FindBin(etalep1,ptlep1);
+            trigger_eff=sfelehltbar->GetBinContent(elebinhltbar);}
+        if (fabs(etalep1)>1.566) {
+            int elebinhltend=sfelehltend->FindBin(etalep1,ptlep1);
+            trigger_eff=sfelehltend->GetBinContent(elebinhltend);}}
+
+        IDweight=1.0;
+        
+        //https://indico.cern.ch/event/831669/contributions/3485543/attachments/1871797/3084930/ApprovalSlides_EE_v3.pdf
+        //https://twiki.cern.ch/twiki/bin/view/CMS/EgammaRunIIRecommendations
+        if (ptlep1>30.)
+        {if (fabs(etalep1)<1.444){IDweight=1*0.983;}
+        else if (fabs(etalep1)>=1.566){IDweight=1*0.991;}
+        }
+        
+        IDweightISO=1.0;
+        
+        IDweighttrk=1.0;//Electron Reconstruction Scale Factor
+        if(ptlep1>=sfelereco->GetYaxis()->GetBinLowEdge(1)&&ptlep1<=sfelereco->GetYaxis()->GetBinUpEdge(sfelereco->GetNbinsY())){
+        Double_t ele_pt=ptlep1;
+        if (ele_pt>500) {ele_pt=499.0;}
+        int elebin=sfelereco->FindBin(etalep1,ele_pt);
+            IDweighttrk=sfelereco->GetBinContent(elebin);}
+
+        
+        //cout << "pileupWeight:"<<pileupWeight<< " eff_and_pu_Weight:" << eff_and_pu_Weight << " eff_and_pu_Weight1:" << eff_and_pu_Weight1 << endl;
+        if(theWeight>0) nn=1;
+        else nn= -1;
+        if(npp>0) lumiWeight=Identical_lumiWeight/(npp-nmm);
+        else lumiWeight=Identical_lumiWeight/nentries;
+        weight_nobtag=lumiWeight*triggerWeight*eff_and_pu_Weight*nn*trigger_eff;
+        if (IsData>1 &&IsData<9 ) weight_nobtag = weight_nobtag*1.21;
+        
+        if ( IsData==0 ) weight_nobtag=1;
+        //Weight Calculation Done
+        
+
+    }
+        if(channelname=="mu"){
+            trigger_eff=1.0;
+            double effmud1=1,effmud2=1,effmetd=1,effmumc1=1,effmumc2=1,effmetmc=1;
+            //https://twiki.cern.ch/twiki/bin/view/CMS/MuonWorkInProgressAndPagResults
+            if(ptlep1>=sfmuhlt->GetYaxis()->GetBinLowEdge(1)&&ptlep1<=sfmuhlt->GetYaxis()->GetBinUpEdge(sfmuhlt->GetNbinsY())){
+            double tmp_eta=fabs(etalep1);
+            if(tmp_eta>2.4)tmp_eta=2.39;
+            double tmp_pthlt=ptlep1;
+            if(tmp_pthlt>1200)tmp_pthlt=1199;
+            int mubinhlt=sfmuhlt->FindBin(tmp_eta,tmp_pthlt);
+                effmud1=sfmuhlt->GetBinContent(mubinhlt);
+                effmumc1=sfmuhlt2->GetBinContent(mubinhlt);
+                effmud2=sfmuhlt3->GetBinContent(mubinhlt);
+                effmumc2=sfmuhlt4->GetBinContent(mubinhlt);
+            }
+            if(MET_et>=sfmethlt->GetXaxis()->GetBinLowEdge(1)&&MET_et<=sfmethlt->GetXaxis()->GetBinUpEdge(sfmethlt->GetNbinsX())){
+                effmetd=sfmethlt->GetBinContent(sfmethlt->FindBin(MET_et));
+                effmetmc=sfmethlt1->GetBinContent(sfmethlt1->FindBin(MET_et));
+            }
+            double lumibf=5.746010293+2.572903489+4.242291557+4.025228049+3.104509119;
+            double lumigh=7.575579377+8.650628335;
+            trigger_eff=((lumibf*effmud1+lumigh*effmud2)/(lumibf+lumigh)+effmetd-(lumibf*effmud1+lumigh*effmud2)/(lumibf+lumigh)*effmetd)/((lumibf*effmumc1+lumigh*effmumc2)/(lumibf+lumigh)+effmetmc-(lumibf*effmumc1+lumigh*effmumc2)/(lumibf+lumigh)*effmetmc);
+            //cout<<effmud1<<"   "<<effmumc1<<"   "<<effmud2<<"   "<<effmumc2<<"   "<<effmetd<<"   "<<effmetmc<<"   "<<trigger_eff<<"   "<<endl;
+        
+		if(theWeight>0) nn=1;
+		else nn= -1;
+		if(npp>0) lumiWeight=Identical_lumiWeight/(npp-nmm);
+		else lumiWeight=Identical_lumiWeight/nentries;
+		weight_nobtag=lumiWeight*triggerWeight*eff_and_pu_Weight*nn*trigger_eff;
+		//weight=lumiWeight*triggerWeight*pileupWeight*nn;
+		if (IsData>1 &&IsData<9 ) weight_nobtag = weight_nobtag*1.21;
+
+	
+		if ( IsData==0 ) weight_nobtag=1;
+		//Weight Calculation Done
+
+
+      IDweight=1.0;
+            if(ptlep1>=sfmuid->GetYaxis()->GetBinLowEdge(1)&&ptlep1<=sfmuid->GetYaxis()->GetBinUpEdge(sfmuid->GetNbinsY())){
+            double tmp_ptlep1=ptlep1;
+            if(tmp_ptlep1>120)tmp_ptlep1=119.;
+                double tmp_etaid=etalep1;
+                if(tmp_etaid>2.4)tmp_etaid=2.39;
+            int mubinid=sfmuid->FindBin(tmp_etaid,tmp_ptlep1);
+                IDweight=sfmuid->GetBinContent(mubinid);}
+
+    
+
+      IDweightISO=1.0;
+            if(ptlep1>=sfmuiso->GetYaxis()->GetBinLowEdge(1)&&ptlep1<=sfmuiso->GetYaxis()->GetBinUpEdge(sfmuiso->GetNbinsY())){
+            double tmp_ptlep1=ptlep1;
+            if(tmp_ptlep1>120)tmp_ptlep1=119.;
+                double tmp_etaiso=etalep1;
+                if(tmp_etaiso>2.4)tmp_etaiso=2.39;
+
+            int mubiniso=sfmuiso->FindBin(tmp_etaiso,tmp_ptlep1);
+                IDweightISO=sfmuiso->GetBinContent(mubiniso);}
+
+               
+      IDweighttrk=1.0;
+
+        }
+        ToppTweight=1.0;
+        double a_top=0.0615;
+        double b_top=- 0.0005;
+        if (gentop_pt<0 || genantitop_pt<0){ToppTweight=1.0;}
+        else if(gentop_pt>0 && genantitop_pt>0){ToppTweight=sqrt(exp(a_top+b_top*gentop_pt)*exp(a_top+b_top*genantitop_pt));}
+        else if(gentop_pt>0 && genantitop_pt<0){ToppTweight=sqrt(exp(a_top+b_top*gentop_pt));}
+        else if(gentop_pt<0 && genantitop_pt>0){ToppTweight=sqrt(exp(a_top+b_top*genantitop_pt));}
+
+        }
+        if(IsData==0){
+            trigger_eff=1.0;
+            if(theWeight>0) nn=1;
+            else nn= -1;
+            if(npp>0) lumiWeight=Identical_lumiWeight/(npp-nmm);
+            else lumiWeight=Identical_lumiWeight/nentries;
+            weight_nobtag=lumiWeight*triggerWeight*eff_and_pu_Weight*nn*trigger_eff;
+            //weight=lumiWeight*triggerWeight*pileupWeight*nn;
+            if (IsData>1 &&IsData<9 ) weight_nobtag = weight_nobtag*1.21;
+            if ( IsData==0 ) weight_nobtag=1;
+            IDweight=1.0;
+            IDweightISO=1.0;
+            IDweighttrk=1.0;
+            ToppTweight=1.0;
+        }
+
+
+        
+
+        
+        num_of_AK8_AK4();
+        
+        for(Int_t i=0; i<8; i++)  {
+       deltaRAK4AK8_new_2[i]=0.;
+}
+        BSF(IsData);
+        if(jet_mass_puppi<-100||jet_mass_puppi_2<-100||jet_mass_puppi_3<-100) continue;
+
+
+        if(theWeight>0) nn=1;
+        else nn= -1;
+        if(npp>0) lumiWeight=Identical_lumiWeight/(npp-nmm);
+        else lumiWeight=Identical_lumiWeight/nentries;
+//                std::cout<<IDweight<<"        "<<btagweight_center<<"   "<<trigger_eff<<std::endl;
+        weight=lumiWeight*triggerWeight*eff_and_pu_Weight*nn*trigger_eff*IDweight*IDweightISO*IDweighttrk*ToppTweight;
+        double weight_tmp=weight;
+        weight=btagweight_center*weight;
+
+        //https://github.com/jmhogan/GenHTweight/blob/master/WJetsToLNuSFs.txt
+                if (IsData==2 ) weight = weight*1.21*0.998056;
+                if (IsData==3 ) weight = weight*1.21*0.978569;
+                if (IsData==4 ) weight = weight*1.21*0.928054;
+                if (IsData==5 ) weight = weight*1.21*0.856705;
+                if (IsData==6 ) weight = weight*1.21*0.757463;
+                if (IsData==7 ) weight = weight*1.21*0.608292;
+                if (IsData==8 ) weight = weight*1.21*0.454246;
+                if ( IsData==0 ) weight=1;
+//final weight------
+        scale_center=1;scale_down=1;scale_up=1;
+        Double_t pdf_center=1,pdf_down=1,pdf_up=1;
+        
+    weight_tau_or_deep_corr(channelname, IsData, weight_tmp);
+    
+    num_of_bJet();
+
+
+		Int_t nLooseLep=nLooseEle+nLooseMu;//the tight Lep included
+        
+    Nsubjetness2();
+
+    all_kinds_deltaR();
+    
+    ST_cal();
+
+
+    all_kinds_deltaR_unknown();
+        
+    Mj_oder();
+  
+    pt_order_consider_w();
+        
+    in_and_ex_ak4();
+        
+    use_w_mass_resolved();
+    use_z_mass_resolved();
+    use_w_mass_resolved_0AK8();
+    use_z_mass_resolved_0AK8();
+    
+    inv_mass();
+
+    two_w_boson_deltaR();
+    
+    match_particle_for_each_jet(IsData);
+    
+    weight_dnn_corr(IsData, massdnn,h_t60,h_q60,h_w60,h_t100,h_q100,h_w100,h_t150,h_q150,h_t200,h_q200);
+    
+    
+
+
+        
+        //sqrt(pow(fabs(gentop_eta-genantitop_eta),2)+pow(TMath::Min(fabs(gentop_phi-genantitop_phi),2*Pi-fabs(gentop_phi-genantitop_phi)),2))
+        
+
+        
+
+
+ 
+                    
+        //if(jentry==10000) break;
+        
+		Double_t isAnaHP=1.;
+		Double_t isAnaLP=1.;
+		Double_t isAnaNP=1.;
+		Double_t isTTBarControl=1.;
+		Int_t tmp_categoryID_channel=0;
+		double pt_cut=200;
+		if( channelname=="el" ){
+		tmp_categoryID_channel=-1;// -1 for el; 1 for mu
+            if(IsData>0){
+			if ( lep==11 && (HLT_Ele4>0 || HLT_Ele5>0 || HLT_Ele8>0) && Mj_max > 40 && nLooseLep==1 && ptlep1>55 && fabs(etalep1)<2.5 && MET_et>80 && ptVlepJEC > 200. && jet_pt_puppi>200 && fabs(jetAK8puppi_eta)<2.4 && ((IDLoose>0&&Nj8==1)||(IDLoose>0&&IDLoose_2>0&&Nj8==2&& fabs(jetAK8puppi_eta_2)<2.4&&jet_pt_puppi_2>pt_cut)||(IDLoose>0&&IDLoose_2>0&&IDLoose_3>0&&Nj8>=3&& fabs(jetAK8puppi_eta_2)<2.4&& fabs(jetAK8puppi_eta_3)<2.4&&jet_pt_puppi_2>pt_cut&&jet_pt_puppi_3>pt_cut))&&passFilter_HBHE>0  &&  passFilter_GlobalHalo>0 && passFilter_HBHEIso>0 && passFilter_ECALDeadCell>0 && passFilter_GoodVtx>0 && passFilter_badMuon>0>0)// &&  passFilter_EEBadSc>0
+                ExTree->Fill();}
+            if(IsData==0&&IsMET==0){
+                if ( lep==11 && (HLT_Ele4>0 || HLT_Ele5>0 || HLT_Ele8>0) && Mj_max > 40 && nLooseLep==1 && ptlep1>55 && fabs(etalep1)<2.5 && MET_et>80 && ptVlepJEC > 200. && jet_pt_puppi>200 && fabs(jetAK8puppi_eta)<2.4 && ((IDLoose>0&&Nj8==1)||(IDLoose>0&&IDLoose_2>0&&Nj8==2&& fabs(jetAK8puppi_eta_2)<2.4&&jet_pt_puppi_2>pt_cut)||(IDLoose>0&&IDLoose_2>0&&IDLoose_3>0&&Nj8>=3&& fabs(jetAK8puppi_eta_2)<2.4&& fabs(jetAK8puppi_eta_3)<2.4&&jet_pt_puppi_2>pt_cut&&jet_pt_puppi_3>pt_cut))&&passFilter_HBHE>0  &&  passFilter_GlobalHalo>0 && passFilter_HBHEIso>0 && passFilter_ECALDeadCell>0 && passFilter_GoodVtx>0 && passFilter_badMuon>0>0&&  passFilter_EEBadSc>0)// &&  passFilter_EEBadSc>0
+                    ExTree->Fill();}
+            /*if(IsData==0&&IsMET==1){
+                if ( lep==11 && (HLT_Mu12>0 && HLT_Mu2<1 && HLT_Mu3<1 && HLT_Ele3<1 && HLT_Ele4<1 && HLT_Ele8<1) && Mj_max > 40 && nLooseLep==1 && ptlep1>55 && fabs(etalep1)<2.5 && MET_et>80 && ptVlepJEC > 200. && jet_pt_puppi>200 && fabs(jetAK8puppi_eta)<2.4 && ((IDLoose>0&&Nj8==1)||(IDLoose>0&&IDLoose_2>0&&Nj8==2&& fabs(jetAK8puppi_eta_2)<2.4)||(IDLoose>0&&IDLoose_2>0&&IDLoose_3>0&&Nj8>=3&& fabs(jetAK8puppi_eta_2)<2.4&& fabs(jetAK8puppi_eta_3)<2.4))&&passFilter_HBHE>0  &&  passFilter_GlobalHalo>0 && passFilter_HBHEIso>0 && passFilter_ECALDeadCell>0 && passFilter_GoodVtx>0 && passFilter_badMuon>0&&  passFilter_EEBadSc>0)// &&  passFilter_EEBadSc>0
+                    ExTree->Fill();}*/
+        }
+		else if( channelname=="mu" ){
+		tmp_categoryID_channel=1;// -1 for el; 1 for mu
+            if(IsData>0){
+            //if(lep==13 &&Nj8==2 )    
+            if(lep==13 )    
+       //     if(lep==13 && (HLT_Mu2>0 || HLT_Mu3>0|| HLT_Mu12>0) && trackIso/ptlep1<0.1 && muisolation<0.05 && fabs(etalep1)<2.4 && Mj_max > 40 && nLooseLep==1 && ptlep1>55 && MET_et>40 && ptVlepJEC>200 && jet_pt_puppi>200 && fabs(jetAK8puppi_eta)<2.4 && ((IDLoose>0&&Nj8==1)||(IDLoose>0&&IDLoose_2>0&&Nj8==2&& fabs(jetAK8puppi_eta_2)<2.4&&jet_pt_puppi_2>pt_cut)||(IDLoose>0&&IDLoose_2>0&&IDLoose_3>0&&Nj8>=3&& fabs(jetAK8puppi_eta_2)<2.4&& fabs(jetAK8puppi_eta_3)<2.4&&jet_pt_puppi_2>pt_cut&&jet_pt_puppi_3>pt_cut))&&passFilter_HBHE>0  &&  passFilter_GlobalHalo>0 && passFilter_HBHEIso>0 && passFilter_ECALDeadCell>0 && passFilter_GoodVtx>0 && passFilter_badMuon>0>0)
+                ExTree->Fill();}
+             if(IsData==0&&IsMET==0){
+            //if(lep==13 &&Nj8==2 )
+            if(lep==13 )    
+       //         if(lep==13 && (HLT_Mu2>0 || HLT_Mu3>0) && trackIso/ptlep1<0.1 && muisolation<0.05 && fabs(etalep1)<2.4 && Mj_max > 40 && nLooseLep==1 && ptlep1>55 && MET_et>40 && ptVlepJEC>200 && jet_pt_puppi>200 && fabs(jetAK8puppi_eta)<2.4 && ((IDLoose>0&&Nj8==1)||(IDLoose>0&&IDLoose_2>0&&Nj8==2&& fabs(jetAK8puppi_eta_2)<2.4&&jet_pt_puppi_2>pt_cut)||(IDLoose>0&&IDLoose_2>0&&IDLoose_3>0&&Nj8>=3&& fabs(jetAK8puppi_eta_2)<2.4&& fabs(jetAK8puppi_eta_3)<2.4&&jet_pt_puppi_2>pt_cut&&jet_pt_puppi_3>pt_cut))&&passFilter_HBHE>0  &&  passFilter_GlobalHalo>0 && passFilter_HBHEIso>0 && passFilter_ECALDeadCell>0 && passFilter_GoodVtx>0 && passFilter_badMuon>0>0&&  passFilter_EEBadSc>0)
+                    ExTree->Fill();}
+            if(IsData==0&&IsMET==1){
+            if(lep==13 &&Nj8==2 )
+       //         if(lep==13 && (HLT_Mu2<1&&HLT_Mu3<1&& HLT_Mu12>0&&HLT_Ele4<1&& HLT_Ele5<1&& HLT_Ele8<1) && trackIso/ptlep1<0.1 && muisolation<0.05 && fabs(etalep1)<2.4 && Mj_max > 40 && nLooseLep==1 && ptlep1>55 && MET_et>40 && ptVlepJEC>200 && jet_pt_puppi>200 && fabs(jetAK8puppi_eta)<2.4 && ((IDLoose>0&&Nj8==1)||(IDLoose>0&&IDLoose_2>0&&Nj8==2&& fabs(jetAK8puppi_eta_2)<2.4&&jet_pt_puppi_2>pt_cut)||(IDLoose>0&&IDLoose_2>0&&IDLoose_3>0&&Nj8>=3&& fabs(jetAK8puppi_eta_2)<2.4&& fabs(jetAK8puppi_eta_3)<2.4&&jet_pt_puppi_2>pt_cut&&jet_pt_puppi_3>pt_cut))&&passFilter_HBHE>0  &&  passFilter_GlobalHalo>0 && passFilter_HBHEIso>0 && passFilter_ECALDeadCell>0 && passFilter_GoodVtx>0 && passFilter_badMuon>0>0&&  passFilter_EEBadSc>0)
+
+                //if(lep==13 && (HLT_Mu2<1&&HLT_Mu3<1&& HLT_Mu12>0) && trackIso/ptlep1<0.1 && muisolation<0.05 && fabs(etalep1)<2.4 && Mj_max > 40 && nLooseLep==1 && ptlep1>55 && MET_et>40 && ptVlepJEC>200 && jet_pt_puppi>200 && fabs(jetAK8puppi_eta)<2.4 && ((IDLoose>0&&Nj8==1)||(IDLoose>0&&IDLoose_2>0&&Nj8==2&& fabs(jetAK8puppi_eta_2)<2.4)||(IDLoose>0&&IDLoose_2>0&&IDLoose_3>0&&Nj8>=3&& fabs(jetAK8puppi_eta_2)<2.4&& fabs(jetAK8puppi_eta_3)<2.4))&&passFilter_HBHE>0  &&  passFilter_GlobalHalo>0 && passFilter_HBHEIso>0 && passFilter_ECALDeadCell>0 && passFilter_GoodVtx>0 && passFilter_badMuon>0>0&&  passFilter_EEBadSc>0)
+                    ExTree->Fill();}
+
+		}else{
+			cout<<"We don't know channelname:"<<channelname<<endl;
+		}
+
+
+//cout<<nLooseMu<<"      "<<nLooseEle<<"     "<<endl;
+	}
+    elereco->Close();
+    elehlt->Close();
+    muhlt->Close();
+    methlt->Close();
+    muid->Close();
+    muiso->Close();
+    muhlt1->Close();
+    muid1->Close();
+    muiso1->Close();
+
+}
+
+/*
+ 2019/08/15:
+ add dR(b/2q,j)<0.6:t matched
+ add dR(2q,j)&dR(b,j)<0.6:W matched
+ judge t or W; jet mass<110 ->100
+*/

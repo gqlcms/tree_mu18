@@ -1,0 +1,3 @@
+WWW_aTGC.root ; 93.39 ; 50000
+WZZ_aTGC.root ; 7.367 ; 50000
+WWZ_aTGC.root ; 210.9 ; 50000
